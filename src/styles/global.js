@@ -90,5 +90,6 @@ export const global = css`
     font-family: ${fonts.primary};
     color: ${colors.primaryText};
     background-color: ${colors.background};
+    margin: 0 auto;
   }
 `;

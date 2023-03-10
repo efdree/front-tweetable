@@ -13,8 +13,6 @@ const WrapperLi = styled.li`
   margin: 32px 0px;
   padding: 8px 16px;
   gap: 8px;
-  background-color: #FFFFFF;
-  border: 1px solid black;
 `;
 
 const ContImage = styled.div`
@@ -32,13 +30,11 @@ const Image = styled.img`
 const ContTweet = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
 `;
 
 const TweetInfo = styled.div`
-  text-align: left;
   display: flex;
-  align-items: left;
+  align-items: center;
   gap: 8px;
 `
 
@@ -84,24 +80,18 @@ const TweetLinks = styled.div`
 `
 
 const CommentsTweet = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
 `
 
 const ActionTweet = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
 `
 
-const Button = styled.button`
-`
-
-function TweetCard(){
-    const tweet = {};
-    const id = 1;
-    tweet.id = 1
-    tweet.avatar = "avatar"
-    tweet.name = "name"
-    tweet.username = "username"
-    tweet.time = "2023-02-28"
-    tweet.body = "Lorem asd asda123123123123123123123123123123123123123 123333 1 sdasd asdsadasdasdasd asd"
-    tweet.comments_count = 10
+function Card({id, tweet}){
 
     return (
         <WrapperLi key={id}>
@@ -120,13 +110,14 @@ function TweetCard(){
               <TweetLinks>
                 <CommentsTweet>
                   <Link to={"/commentsbytweet/" + tweet.id}>
-                    <FaRegComment /> {tweet.comments_count}
+                    <FaRegComment /> 
                   </Link>
+                  <p>{tweet.comments_count}</p>
                 </CommentsTweet>
                 <ActionTweet>
-                  <Button type="submit">
+                  <Link to={"/"}>
                     <HiOutlineTrash/>
-                  </Button>
+                  </Link>
                   <Link to={"/edittweet/" + tweet.id}>
                     <FiEdit2/>
                   </Link>                 
@@ -137,4 +128,4 @@ function TweetCard(){
     )
 }
 
-export default TweetCard;
+export default Card;

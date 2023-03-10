@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import TweetCard from "./components/TweetCard";
+import HomePage from "./pages/HomePage";
 
 const Content = styled.div`
   margin: 0px auto;
@@ -8,7 +8,7 @@ const Content = styled.div`
 function App() {
   return (
     <Content>
-      <TweetCard />
+      <HomePage />
     </Content>
   );
 }
