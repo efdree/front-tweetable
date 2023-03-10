@@ -1,18 +1,20 @@
 import styled from "@emotion/styled";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FaRegComment } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 import { HiOutlineTrash } from "react-icons/hi";
+import { getUser } from "../services/users-service";
 
 const WrapperLi = styled.li`
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1),
     0px 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-radius: 8px;
   display: flex;
   max-width: 600px;
-  margin: 32px 0px;
+  margin: 2px auto;
   padding: 8px 16px;
   gap: 8px;
+  background-color: #ffffff;
 `;
 
 const ContImage = styled.div`
@@ -61,6 +63,7 @@ const CreateTime = styled.p`
 
 const Tweet = styled.div`
   text-align: left;
+  width: 515px;
 `
 
 const TweetBody = styled.div`
@@ -84,6 +87,12 @@ const CommentsTweet = styled.div`
   gap: 10px;
   align-items: center;
 `
+const CommentCount = styled.p`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #5B7083;
+`
 
 const ActionTweet = styled.div`
   display: flex;
@@ -91,34 +100,51 @@ const ActionTweet = styled.div`
   align-items: center;
 `
 
-function Card({id, tweet}){
+const PrimaryLink = {
+  color: "#303036",
+  border: "none",
+  corsor: "pointer",
+  textAlign: "center",
+};
+
+function CardTweet({id, tweet}){
+
+    const [user, setUser] = useState({ 
+      name:"",
+      username:"",
+      avatar:"",
+    });
+
+    useEffect(() => {
+        getUser(tweet.user_id).then(setUser);
+    },[])
 
     return (
         <WrapperLi key={id}>
             <ContImage>
-              <Image src={tweet.avatar} alt={tweet.id}/>
+              <Image src={user.avatar} alt={tweet.id}/>
             </ContImage>
             <ContTweet>
               <TweetInfo>
-                <NameUser>{tweet.name}</NameUser>
-                <UserName>{tweet.username}</UserName>
-                <CreateTime>{tweet.time}</CreateTime>
+                <NameUser>{user.name}</NameUser>
+                <UserName>@{user.username}</UserName>
+                <CreateTime>{tweet.created_time}</CreateTime>
               </TweetInfo>
               <Tweet>
                 <TweetBody>{tweet.body}</TweetBody>
               </Tweet>
               <TweetLinks>
                 <CommentsTweet>
-                  <Link to={"/commentsbytweet/" + tweet.id}>
+                  <Link to={"/commentsbytweet/" + tweet.id} style={PrimaryLink}>
                     <FaRegComment /> 
                   </Link>
-                  <p>{tweet.comments_count}</p>
+                  <CommentCount>{tweet.comments_count}</CommentCount>
                 </CommentsTweet>
                 <ActionTweet>
-                  <Link to={"/"}>
+                  <Link to={"/"} style={PrimaryLink}>
                     <HiOutlineTrash/>
                   </Link>
-                  <Link to={"/edittweet/" + tweet.id}>
+                  <Link to={"/edittweet/" + tweet.id} style={PrimaryLink}>
                     <FiEdit2/>
                   </Link>                 
                 </ActionTweet>
@@ -128,4 +154,4 @@ function Card({id, tweet}){
     )
 }
 
-export default Card;
+export default CardTweet;

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
 import { getTweets } from "../services/tweets-service";
+import CardList from "../components/CardList";
 
 const Content = styled.div`
   margin: 0 auto;
@@ -17,6 +18,7 @@ function HomePage(){
     return (
         <Content>
             <Header>Home</Header>
+            <CardList tweets={tweets}/>
         </Content>
     );
 }

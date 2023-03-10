@@ -1,0 +1,26 @@
+[
+  {
+    "email": "admin@mail.com",
+    "username": "admin",
+    "avatar": "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678321668/app_offix/upqpstv2rhuu5alqafvt.png",
+    "id": 1,
+    "password": "123456",
+    "name": "admin"
+  },
+  {
+    "email": "test@mail.com",
+    "username": "test",
+    "avatar": "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678321928/app_offix/z1fhcyikttdcoletvy77.png",
+    "id": 2,
+    "password": "123456",
+    "name": "test"
+  },
+  {
+    "email": "test1@mail.com",
+    "username": "test1",
+    "avatar": "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678321947/app_offix/we4eaoassbsvl0xrgvgx.png",
+    "id": 3,
+    "password": "123456",
+    "name": "test1"
+  }
+]
