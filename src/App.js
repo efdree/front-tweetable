@@ -1,8 +1,15 @@
+import styled from "@emotion/styled";
+import TweetCard from "./components/TweetCard";
+
+const Content = styled.div`
+  margin: 0px auto;
+`;
+
 function App() {
   return (
-    <div>
-      HOLA
-    </div>
+    <Content>
+      <TweetCard />
+    </Content>
   );
 }
 

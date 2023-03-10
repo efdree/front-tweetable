@@ -4,9 +4,7 @@ import { colors } from "./colors";
 import { fonts } from "./typography";
 
 export const reset = css`
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
   /* Box sizing rules */
   *,
   *::before,
@@ -90,9 +88,7 @@ export const global = css`
     font-size: 1rem;
     line-height: 1.5rem;
     font-family: ${fonts.primary};
-    color: ${colors.black};
+    color: ${colors.primaryText};
     background-color: ${colors.background};
-    width: 360px;
-    margin: 0 auto;
   }
 `;
