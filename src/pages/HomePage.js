@@ -5,25 +5,25 @@ import { getTweets } from "../services/tweets-service";
 import CardList from "../components/CardList";
 import NavBar from "../components/Navbar";
 
-
 const Content = styled.div`
   margin: 0 auto;
-  background-color: #EBEEF0;
+  background-color: #ebeef0;
 `;
 
-function HomePage(){
-    const [tweets, setTweets] = useState([]);
-    useEffect(() => {
-        getTweets().then(setTweets);
-    },[])
+function HomePage() {
+  const [tweets, setTweets] = useState([]);
+  useEffect(() => {
+    getTweets().then(setTweets);
+  }, []);
 
-    return (
-        <Content>
-            <NavBar />
-            <Header>Home</Header>
-            <CardList tweets={tweets}/>
-        </Content>
-    );
+  console.log(tweets);
+  return (
+    <Content>
+      <NavBar />
+      <Header>Home</Header>
+      <CardList tweets={tweets} />
+    </Content>
+  );
 }
 
 export default HomePage;

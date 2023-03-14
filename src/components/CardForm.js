@@ -24,8 +24,7 @@ const Image = styled.img`
   max-height: 50px;
 `;
 
-const ContTweet = styled.div`
-`;
+const ContTweet = styled.div``;
 
 const TweetBody = styled.input`
   text-align: left;
@@ -33,38 +32,36 @@ const TweetBody = styled.input`
   font-size: 16px;
   line-height: 24px;
   color: #000000;
-`
-const ContButton = styled.div`
 `;
+const ContButton = styled.div``;
 
 function CardForm({
-    onsubmit,
-    src,
-    tweet_id,
-    value,
-    name,
-    onchage,
-    nameButton
-}){
-
-    return (
-        <ContentForm onSubmit={onsubmit}>
-            <ContImage>
-              <Image src={src} alt={tweet_id}/>
-            </ContImage>
-            <ContTweet>
-                <TweetBody
-                    placeholder="Remember to thing before write..."
-                    value={value}
-                    name={name}
-                    onChange={onchage}
-                />
-            </ContTweet>
-            <ContButton>
-                <Button type="submit">{nameButton}</Button>
-            </ContButton>
-        </ContentForm>
-    )
+  onsubmit,
+  src,
+  tweet_id,
+  value,
+  name,
+  onchange,
+  nameButton,
+}) {
+  return (
+    <ContentForm onSubmit={onsubmit}>
+      <ContImage>
+        <Image src={src} alt={tweet_id} />
+      </ContImage>
+      <ContTweet>
+        <TweetBody
+          placeholder="Remember to thing before write..."
+          value={value}
+          name={name}
+          onChange={onchange}
+        />
+      </ContTweet>
+      <ContButton>
+        <Button type="submit">{nameButton}</Button>
+      </ContButton>
+    </ContentForm>
+  );
 }
 
 export default CardForm;

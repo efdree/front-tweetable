@@ -6,11 +6,10 @@ import EditTweet from "./pages/EditTweet";
 function App() {
   return (
     <Routes>
-      <Route index path="/" element={<HomePage />}/>
-      <Route path="/tweet/:id" element={<TuitDetail />}/>
-      <Route path="/editTweet/:id" element={<EditTweet />}/>
+      <Route index path="/" element={<HomePage />} />
+      <Route path="/tweet/:id" element={<TuitDetail />} />
+      <Route path="/editTweet/:id" element={<EditTweet />} />
     </Routes>
-    
   );
 }
 
