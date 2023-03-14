@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+const Content = styled.div`
+    display:flex;
+    flex-direction: column;
+`
+
 const StyledInput = styled.input`
     border-radius: 8px;
     padding: 8px 12px;
@@ -24,14 +29,14 @@ const StyledLabel = styled.label`
 function FileInput({
     id,
     name,
-    type="file",
+    type="text",
     value,
     onChange,
     placeholder,
     label
 }){
     return (
-        <div>
+        <Content>
             {label && <StyledLabel htmlFor={id || name}>{label}</StyledLabel>}
             <StyledInput 
                 type={type}
@@ -41,8 +46,9 @@ function FileInput({
                 value={value}
                 onChange={onChange}
             />
-        </div>
+        </Content>
     );
 }
 
 export default FileInput;
+
