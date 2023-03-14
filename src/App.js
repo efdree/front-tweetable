@@ -4,12 +4,14 @@ import TuitDetail from "./pages/TuitDetail";
 import EditTweet from "./pages/EditTweet";
 import EditComment from "./pages/EditComment";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
     <Routes>
       <Route index path="/" element={<HomePage />} />
       <Route path="/login" element={<Login />}/>
+      <Route path="/signup" element={<SignUp />}/>
       <Route path="/tweet/:id" element={<TuitDetail />} />
       <Route path="/editTweet/:id" element={<EditTweet />} />
       <Route path="/editComment/:id" element={<EditComment />} />
