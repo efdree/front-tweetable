@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
 import { getTweet } from "../services/tweets-service";
-import Card from "../components/Card";
-import CardList from "../components/CardList";
+import CardTweet from "../components/CardTweet";
+import CardListComment from "../components/CardListComment";
 import NavBar from "../components/Navbar";
 import { useParams } from "react-router-dom";
 
@@ -40,13 +40,14 @@ function TuitDetail() {
     getTweet(Number(params.id)).then(setTweet);
   }, [params.id]);
 
+  
   return (
     <Content>
       <NavBar />
       <Header>Tuit Details</Header>
-      <Card id={tweet[0].id} tweet={tweet[0]} />
+      <CardTweet id={tweet[0].id} tweet={tweet[0]} />
       <ContentComments>
-        <CardList tweets={tweet[0].comments_tweets} />
+        <CardListComment comments={tweet[0].comments_tweets} />
       </ContentComments>
     </Content>
   );

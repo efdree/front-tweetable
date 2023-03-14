@@ -107,7 +107,7 @@ const PrimaryLink = {
   textAlign: "center",
 };
 
-function Card({id, tweet}){
+function CardTweet({id, tweet}){
 
     const [user, setUser] = useState({ 
       name:"",
@@ -135,13 +135,10 @@ function Card({id, tweet}){
               </Tweet>
               <TweetLinks>
                 <CommentsTweet>
-                  { (tweet.comments_count >= 0) ? (<>
                     <Link to={"/tweet/" + tweet.id} style={PrimaryLink}>
                     <FaRegComment /> 
                     </Link>
-                  <CommentCount>{tweet.comments_count}</CommentCount></>)
-                   : ("")
-                  }
+                  <CommentCount>{tweet.comments_count}</CommentCount>
                 </CommentsTweet>
                 <ActionTweet>
                   <Link to={"/"} style={PrimaryLink}>
@@ -157,4 +154,4 @@ function Card({id, tweet}){
     )
 }
 
-export default Card;
+export default CardTweet;
