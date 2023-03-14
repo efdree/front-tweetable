@@ -107,7 +107,7 @@ const PrimaryLink = {
   textAlign: "center",
 };
 
-function CardTweet({id, tweet}){
+function Card({id, tweet}){
 
     const [user, setUser] = useState({ 
       name:"",
@@ -122,7 +122,7 @@ function CardTweet({id, tweet}){
     return (
         <WrapperLi key={id}>
             <ContImage>
-              <Image src={user.avatar} alt={tweet.id}/>
+              <Image src={user.avatar ? user.avatar : "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"} alt={tweet.id}/>
             </ContImage>
             <ContTweet>
               <TweetInfo>
@@ -135,16 +135,19 @@ function CardTweet({id, tweet}){
               </Tweet>
               <TweetLinks>
                 <CommentsTweet>
-                  <Link to={"/commentsbytweet/" + tweet.id} style={PrimaryLink}>
+                  { (tweet.comments_count >= 0) ? (<>
+                    <Link to={"/tweet/" + tweet.id} style={PrimaryLink}>
                     <FaRegComment /> 
-                  </Link>
-                  <CommentCount>{tweet.comments_count}</CommentCount>
+                    </Link>
+                  <CommentCount>{tweet.comments_count}</CommentCount></>)
+                   : ("")
+                  }
                 </CommentsTweet>
                 <ActionTweet>
                   <Link to={"/"} style={PrimaryLink}>
                     <HiOutlineTrash/>
                   </Link>
-                  <Link to={"/edittweet/" + tweet.id} style={PrimaryLink}>
+                  <Link to={"/editTweet/" + tweet.id} style={PrimaryLink}>
                     <FiEdit2/>
                   </Link>                 
                 </ActionTweet>
@@ -154,4 +157,4 @@ function CardTweet({id, tweet}){
     )
 }
 
-export default CardTweet;
+export default Card;

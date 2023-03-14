@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import CardTweet from "./CardTweet";
+import Card from "./Card";
 
 const WrapperUl = styled.ul`
   padding: 0px;
@@ -11,7 +11,7 @@ function CardList({ tweets }) {
   return (
     <WrapperUl>
       {tweets.map((tweet) => (
-        <CardTweet key={tweet.id} tweet={tweet} />
+        <Card key={tweet.id} tweet={tweet} />
       ))}
     </WrapperUl>
   );

@@ -1,15 +1,16 @@
-import styled from "@emotion/styled";
+import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-
-const Content = styled.div`
-  margin: 0px auto;
-`;
+import TuitDetail from "./pages/TuitDetail";
+import EditTweet from "./pages/EditTweet";
 
 function App() {
   return (
-    <Content>
-      <HomePage />
-    </Content>
+    <Routes>
+      <Route index path="/" element={<HomePage />}/>
+      <Route path="/tweet/:id" element={<TuitDetail />}/>
+      <Route path="/editTweet/:id" element={<EditTweet />}/>
+    </Routes>
+    
   );
 }
 
