@@ -13,7 +13,6 @@ function CardListComment({ comments }) {
       {comments.map((comment) => (
         <CardComment key={comment.id} comment={comment} />
       ))}
-      
     </WrapperUl>
   );
 }

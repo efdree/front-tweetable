@@ -5,7 +5,7 @@ import NavBar from "../components/Navbar";
 import { useParams } from "react-router-dom";
 import EditForm from "../components/EditForm";
 import { useNavigate } from "react-router-dom";
-import { getComment,updatecomment } from "../services/comments-service";
+import { getComment, updateComment } from "../services/comments-service";
 
 const Content = styled.div`
   margin: 0 auto;
@@ -40,17 +40,17 @@ function EditComment() {
     setFormData({ ...formData, [name]: value });
   }
 
-
   function handleSubmit(event) {
-   
     formData.created_time = formData.created_time
       ? formData.created_time
       : comment.created_time;
     formData.body = formData.body ? formData.body : comment.body;
     formData.user_id = formData.user_id ? formData.user_id : comment.user_id;
-    formData.tweet_id = formData.tweet_id ? formData.tweet_id : comment.tweet_id;
+    formData.tweet_id = formData.tweet_id
+      ? formData.tweet_id
+      : comment.tweet_id;
     event.preventDefault();
-    updatecomment(params.id, formData);
+    updateComment(params.id, formData);
     navigate(`/tweet/${comment.tweet_id}`);
   }
 

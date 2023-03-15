@@ -29,7 +29,17 @@ const PrimaryLink = {
   corsor: "pointer",
 };
 
-function LoginForm({ onsubmit, valueEmail, valuePassword, onchange }) {
+function ProfileForm({
+  onsubmit,
+  valueEmail,
+  valueUsername,
+  valueName,
+  valuePassword,
+  valuePasswordConfirm,
+  onChangeFile,
+  onchange,
+  profile,
+}) {
   return (
     <ContentForm onSubmit={onsubmit}>
       <TextInput
@@ -38,6 +48,28 @@ function LoginForm({ onsubmit, valueEmail, valuePassword, onchange }) {
         onChange={onchange}
         placeholder=""
         label="Email"
+        type="email"
+      />
+      <TextInput
+        name="username"
+        value={valueUsername}
+        onChange={onchange}
+        placeholder=""
+        label="Username"
+      />
+      <TextInput
+        name="name"
+        value={valueName}
+        onChange={onchange}
+        placeholder=""
+        label="name"
+      />
+      <TextInput
+        name="avatar"
+        onChange={onChangeFile}
+        placeholder=""
+        label="Avatar"
+        type="file"
       />
       <TextInput
         name="password"
@@ -45,15 +77,24 @@ function LoginForm({ onsubmit, valueEmail, valuePassword, onchange }) {
         onChange={onchange}
         placeholder=""
         label="Password"
+        type="password"
+      />
+      <TextInput
+        name="password_confirm"
+        value={valuePasswordConfirm}
+        onChange={onchange}
+        placeholder=""
+        label="Password Confirmation"
+        type="password"
       />
       <ContButton>
-        <Button type="submit">Login</Button>
+        <Button type="submit">Submit</Button>
       </ContButton>
-      <Link to="/signup" style={PrimaryLink}>
-        Sign Up
+      <Link to={profile} style={PrimaryLink}>
+        {profile === "/login" ? "Login" : "Cancel my account"}
       </Link>
     </ContentForm>
   );
 }
 
-export default LoginForm;
+export default ProfileForm;

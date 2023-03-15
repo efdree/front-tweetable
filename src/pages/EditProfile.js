@@ -1,19 +1,36 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm";
 import NavBar from "../components/Navbar";
 import UploadImages from "../services/cloudinary-service.js";
-import { createUser } from "../services/users-service";
+import { getUser, updateUser } from "../services/users-service";
 
 const Content = styled.div`
   margin: 0 auto;
   background-color: #ebeef0;
 `;
 
-function SignUp() {
+function EditProfile() {
   const navigate = useNavigate();
+
+  const [user, setUser] = useState([
+    {
+      email: "",
+      username: "",
+      name: "",
+      avatar: "",
+      password: "",
+    },
+  ]);
+
+  let params = useParams();
+
+  useEffect(() => {
+    getUser(Number(params.id)).then(setUser);
+  }, [params.id]);
+
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -39,19 +56,21 @@ function SignUp() {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
+    formData.email = formData.email ? formData.email : user.email;
+    formData.username = formData.username ? formData.username : user.username;
+    formData.name = formData.name ? formData.name : user.name;
     formData.avatar = image ? image : formData.avatar;
+    formData.password = formData.password ? formData.password : user.password;
+    event.preventDefault();
+    //updateUser(formData);
     console.log(formData);
-    createUser(formData);
-    navigate(`/`);
+    //navigate(`/`);
   }
-
-  console.log(formData);
 
   return (
     <Content>
       <NavBar />
-      <Header>Sign Up</Header>
+      <Header>Edit Profile</Header>
       <ProfileForm
         onsubmit={handleSubmit}
         valueEmail={formData.email}
@@ -61,10 +80,10 @@ function SignUp() {
         valuePasswordConfirm={formData.password}
         onChangeFile={handleUploadImage}
         onchange={handleChange}
-        profile={"/login"}
+        profile={"/"}
       />
     </Content>
   );
 }
 
-export default SignUp;
+export default EditProfile;

@@ -40,7 +40,7 @@ const ButtonPrimary = {
 function NavBar() {
   return (
     <Nav>
-      <Link to={"/edituser"} style={ButtonPrimary}>
+      <Link to={"/editProfile"} style={ButtonPrimary}>
         Edit Profile
       </Link>
       <Link to={"/login"} style={ButtonSecondary}>
