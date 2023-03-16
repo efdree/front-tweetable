@@ -1,33 +1,19 @@
 import styled from "@emotion/styled";
 import Button from "./Button";
 import TextInput from "./TextInput";
-import { Link } from "react-router-dom";
 
 const ContentForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 600px;
-  margin: 2px auto;
+  margin: 2px auto 0px auto;
   padding: 50px 0px 16px 0px;
   gap: 8px;
   background-color: white;
 `;
 
 const ContButton = styled.div``;
-
-const PrimaryLink = {
-  padding: "4px 16px",
-  background: "none",
-  border: "none",
-  borderRadius: "100px",
-  letterSpacing: "0.1em",
-  color: "#1DA1F2",
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "24px",
-  corsor: "pointer",
-};
 
 function ProfileForm({
   onsubmit,
@@ -38,7 +24,6 @@ function ProfileForm({
   valuePasswordConfirm,
   onChangeFile,
   onchange,
-  profile,
 }) {
   return (
     <ContentForm onSubmit={onsubmit}>
@@ -90,9 +75,6 @@ function ProfileForm({
       <ContButton>
         <Button type="submit">Submit</Button>
       </ContButton>
-      <Link to={profile} style={PrimaryLink}>
-        {profile === "/login" ? "Login" : "Cancel my account"}
-      </Link>
     </ContentForm>
   );
 }

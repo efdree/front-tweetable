@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
 import { getTweet, updateTweet } from "../services/tweets-service";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavbarLogin";
 import { useParams } from "react-router-dom";
 import EditForm from "../components/EditForm";
 import { useNavigate } from "react-router-dom";
@@ -15,12 +15,14 @@ const Content = styled.div`
 function EditTweet() {
   const navigate = useNavigate();
 
-  const [tweet, setTweet] = useState([{
-    created_time: "2024-12-12",
-    comments_count: 0,
-    body: "TWEETT",
-    user_id: 1,
-  }]);
+  const [tweet, setTweet] = useState([
+    {
+      created_time: "2024-12-12",
+      comments_count: 0,
+      body: "TWEETT",
+      user_id: 1,
+    },
+  ]);
 
   let params = useParams();
 
@@ -40,13 +42,13 @@ function EditTweet() {
     setFormData({ ...formData, [name]: value });
   }
 
-
   function handleSubmit(event) {
-   
     formData.created_time = formData.created_time
       ? formData.created_time
       : tweet[0].created_time;
-    formData.comments_count = formData.comments_count ? formData.comments_count : tweet[0].comments_count;
+    formData.comments_count = formData.comments_count
+      ? formData.comments_count
+      : tweet[0].comments_count;
     formData.body = formData.body ? formData.body : tweet[0].body;
     formData.user_id = formData.user_id ? formData.user_id : tweet[0].user_id;
     event.preventDefault();

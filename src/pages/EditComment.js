@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavbarLogin";
 import { useParams } from "react-router-dom";
 import EditForm from "../components/EditForm";
 import { useNavigate } from "react-router-dom";

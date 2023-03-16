@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 
 const Nav = styled.div`
   display: flex;
@@ -24,29 +23,13 @@ const ButtonSecondary = {
   corsor: "pointer",
 };
 
-const ButtonPrimary = {
-  padding: "4px 16px",
-  background: "none",
-  border: "none",
-  borderRadius: "100px",
-  letterSpacing: "0.1em",
-  color: "#1DA1F2",
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "24px",
-  corsor: "pointer",
-};
-
-function NavBar() {
+function NavbarLogout() {
   return (
     <Nav>
-      <Link to={"/editProfile"} style={ButtonPrimary}>
-        Edit Profile
-      </Link>
-      <Link to={"/login"} style={ButtonSecondary}>
+      <a href={"/login"} style={ButtonSecondary}>
         Login
-      </Link>
+      </a>
     </Nav>
   );
 }
-export default NavBar;
+export default NavbarLogout;

@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import Header from "../components/Header";
 import { createTweet, getTweets } from "../services/tweets-service";
 import CardListTweet from "../components/CardListTweet";
-import NavBar from "../components/Navbar";
 import TweetForm from "../components/TweetForm";
 
 const Content = styled.div`
@@ -39,7 +38,6 @@ function HomePage() {
 
   return (
     <Content>
-      <NavBar />
       <Header>Home</Header>
       <TweetForm
         onsubmit={handleSubmit}

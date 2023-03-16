@@ -1,11 +1,9 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm";
-import NavBar from "../components/Navbar";
 import UploadImages from "../services/cloudinary-service.js";
-import { createUser } from "../services/users-service";
+import { useAuth } from "../context/auth-context";
 
 const Content = styled.div`
   margin: 0 auto;
@@ -13,7 +11,6 @@ const Content = styled.div`
 `;
 
 function SignUp() {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -22,6 +19,8 @@ function SignUp() {
       "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png",
     password: "",
   });
+
+  const { signup } = useAuth();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -42,15 +41,11 @@ function SignUp() {
     event.preventDefault();
     formData.avatar = image ? image : formData.avatar;
     console.log(formData);
-    createUser(formData);
-    navigate(`/`);
+    signup(formData);
   }
-
-  console.log(formData);
 
   return (
     <Content>
-      <NavBar />
       <Header>Sign Up</Header>
       <ProfileForm
         onsubmit={handleSubmit}
@@ -61,7 +56,6 @@ function SignUp() {
         valuePasswordConfirm={formData.password}
         onChangeFile={handleUploadImage}
         onchange={handleChange}
-        profile={"/login"}
       />
     </Content>
   );

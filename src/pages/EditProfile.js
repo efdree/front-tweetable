@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavbarLogin";
 import UploadImages from "../services/cloudinary-service.js";
 import { getUser, updateUser } from "../services/users-service";
 

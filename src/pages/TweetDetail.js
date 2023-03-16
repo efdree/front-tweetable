@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import { getTweet } from "../services/tweets-service";
 import CardTweet from "../components/CardTweet";
 import CardListComment from "../components/CardListComment";
-import NavBar from "../components/Navbar";
+import NavBar from "../components/NavbarLogin";
 import { useParams } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
 import { createComment } from "../services/comments-service";
