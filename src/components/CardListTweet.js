@@ -7,11 +7,11 @@ const WrapperUl = styled.ul`
   max-width: 600px;
 `;
 
-function CardListTweet({ tweets }) {
+function CardListTweet({ tweets, user }) {
   return (
     <WrapperUl>
       {tweets.map((tweet) => (
-        <CardTweet key={tweet.id} tweet={tweet} />
+        <CardTweet key={tweet.id} tweet={tweet} user={user}/>
       ))}
     </WrapperUl>
   );

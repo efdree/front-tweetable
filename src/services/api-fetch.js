@@ -5,8 +5,7 @@ export default async function apiFetch(
   { method, headers, body } = {}
 ) {
   const token = sessionStorage.getItem(tokenKey);
-  console.log("*********")
-  console.log(token)
+
   if (token) {
     headers = {
       Authorization: `Bearer ${token}`,
@@ -27,12 +26,6 @@ export default async function apiFetch(
     body: body ? JSON.stringify(body) : null
   };
   
-  console.log(BASE_URI)
-  console.log("-----------")
-  console.log(endpoint)
-  console.log("-----------")
-  console.log(config)
-
   const response = await fetch(BASE_URI + endpoint, config);
 
   let data;

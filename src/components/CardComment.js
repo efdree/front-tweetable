@@ -100,8 +100,8 @@ const PrimaryLink = {
   textAlign: "center",
 };
 
-function CardComment({ comment }) {
-  const [user, setUser] = useState({
+function CardComment({ comment, user}) {
+  const [u, setUser] = useState({
     name: "",
     username: "",
     avatar: "",
@@ -123,8 +123,8 @@ function CardComment({ comment }) {
       <ContImage>
         <Image
           src={
-            user.avatar
-              ? user.avatar
+            u.avatar
+              ? u.avatar
               : "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
           }
           alt={comment.id}
@@ -132,8 +132,8 @@ function CardComment({ comment }) {
       </ContImage>
       <ContComment>
         <CommentInfo>
-          <NameUser>{user.name}</NameUser>
-          <UserName>@{user.username}</UserName>
+          <NameUser>{u.name}</NameUser>
+          <UserName>@{u.username}</UserName>
           <CreateTime>{comment.created_time}</CreateTime>
         </CommentInfo>
         <Comment>
@@ -141,7 +141,7 @@ function CardComment({ comment }) {
         </Comment>
         <CommentLinks>
           <CommentsTweet></CommentsTweet>
-          <ActionComment>
+          {user && comment.user_id === user.id ? <ActionComment>
             <Link to={"/"} style={PrimaryLink} onClick={handleClick}>
               <HiOutlineTrash />
             </Link>
@@ -149,6 +149,7 @@ function CardComment({ comment }) {
               <FiEdit2 />
             </Link>
           </ActionComment>
+          : ""}
         </CommentLinks>
       </ContComment>
     </WrapperLi>

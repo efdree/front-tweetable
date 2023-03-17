@@ -1,48 +1,31 @@
 import styled from "@emotion/styled";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { useState } from "react";
-
+import HomePage from "./pages/HomePage";
+import TweetDetail from "./pages/TweetDetail";
 import NavbarLogout from "./components/NavbarLogout";
 
 const Content = styled.div`
   background: #ebeef0;
 `;
-const ContentLink = styled.div`
-  margin: 0px auto;
-  text-align: center;
-  width: 600px;
-  background: white;
-  padding-bottom: 16px;
-`;
-const CustomLink = styled.a`
-  margin: 0 auto;
-  text-align: center;
-  letter-spacing: 0.1em;
-  color: #1da1f2;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  cursor: pointer;
-`;
 
 function UnAuthenticatedApp() {
-  const [showLogin, setShowLogin] = useState(true);
 
-  function handleClick(event) {
-    setShowLogin(!showLogin);
-  }
-
-  return (
+   return (
     <Content>
+      <BrowserRouter>
       <NavbarLogout />
-      {showLogin ? <Login /> : <SignUp />}
-      <ContentLink>
-        <CustomLink onClick={handleClick}>
-          {showLogin ? "Sign Up" : "Log in"}
-        </CustomLink>
-      </ContentLink>
+        <Routes>
+          <Route index path="/" element={<HomePage />} />
+          <Route path="/tweet/:id" element={<TweetDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<h1>Not Found</h1>} />
+        </Routes>
+      </BrowserRouter>
     </Content>
   );
 }

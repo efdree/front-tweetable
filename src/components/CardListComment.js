@@ -7,11 +7,11 @@ const WrapperUl = styled.ul`
   max-width: 580px;
 `;
 
-function CardListComment({ comments }) {
+function CardListComment({ comments, user }) {
   return (
     <WrapperUl>
       {comments.map((comment) => (
-        <CardComment key={comment.id} comment={comment} />
+        <CardComment key={comment.id} comment={comment} user={user}/>
       ))}
     </WrapperUl>
   );

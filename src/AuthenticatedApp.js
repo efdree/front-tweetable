@@ -6,7 +6,6 @@ import EditTweet from "./pages/EditTweet";
 import EditComment from "./pages/EditComment";
 import EditProfile from "./pages/EditProfile";
 import { useAuth } from "./context/auth-context";
-import NavbarLogin from "./components/NavbarLogin";
 import { NavLink } from "react-router-dom";
 
 const Content = styled.div`
@@ -66,7 +65,7 @@ function AuthenticatedApp() {
         </NavLink>
       </Nav>
         <Routes>
-          <Route index path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/editProfile" element={<EditProfile />} />
           <Route path="/tweet/:id" element={<TweetDetail />} />
           <Route path="/editTweet/:id" element={<EditTweet />} />

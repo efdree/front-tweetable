@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const Nav = styled.div`
   display: flex;
@@ -26,9 +27,9 @@ const ButtonSecondary = {
 function NavbarLogout() {
   return (
     <Nav>
-      <a href={"/login"} style={ButtonSecondary}>
+      <Link to={"/login"} style={ButtonSecondary}>
         Login
-      </a>
+      </Link>
     </Nav>
   );
 }

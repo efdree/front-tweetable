@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm";
 import UploadImages from "../services/cloudinary-service.js";
 import { useAuth } from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const Content = styled.div`
   margin: 0 auto;
@@ -21,6 +22,7 @@ function SignUp() {
   });
 
   const { signup } = useAuth();
+  const navigate = useNavigate(); 
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -42,6 +44,7 @@ function SignUp() {
     formData.avatar = image ? image : formData.avatar;
     console.log(formData);
     signup(formData);
+    navigate(`/`);
   }
 
   return (

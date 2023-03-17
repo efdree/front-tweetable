@@ -4,13 +4,17 @@ import Header from "../components/Header";
 import { createTweet, getTweets } from "../services/tweets-service";
 import CardListTweet from "../components/CardListTweet";
 import TweetForm from "../components/TweetForm";
+import { useAuth } from "../context/auth-context";
 
 const Content = styled.div`
   margin: 0 auto;
   background-color: #ebeef0;
 `;
 
-function HomePage(showLogin) {
+function HomePage() {
+
+  const { user } = useAuth();
+
   const [formData, setFormData] = useState({
     body: "",
     comments_count: 0,
@@ -25,10 +29,11 @@ function HomePage(showLogin) {
 
   function handleSubmit(event) {
     formData.created_time = Date.now();
+    formData.user_id = user.id
     console.log(formData);
     createTweet(formData);
     event.preventDefault();
-    window.location.reload();
+    //window.location.reload();
   }
 
   const [tweets, setTweets] = useState([]);
@@ -39,17 +44,17 @@ function HomePage(showLogin) {
   return (
     <Content>
       <Header>Home</Header>
-      {showLogin ? <TweetForm
+      { user ? <TweetForm
         onsubmit={handleSubmit}
         src={
           "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
         }
-        user_id={1}
+        user_id={user.id}
         value={formData.body}
         onchange={handleChange}
         nameButton="Tweet"
       /> : ""}
-      <CardListTweet tweets={tweets} login={showLogin}/>
+      <CardListTweet tweets={tweets} user={user}/>
     </Content>
   );
 }

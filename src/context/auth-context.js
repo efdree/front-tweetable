@@ -10,12 +10,6 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    // getUser()
-    //   .then((u) => setUser(u))
-    //   .catch((error) => console.log(error));
-  }, []);
-
   function login(credentials) {
     auth
       .login(credentials)

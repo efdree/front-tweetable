@@ -43,7 +43,7 @@ function EditProfile() {
     formData.avatar = image ? image : formData.avatar;
     event.preventDefault();
     updateUser(user.id, formData);
-    //navigate("/");
+    navigate("/");
   }
 
   return (

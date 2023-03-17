@@ -108,8 +108,9 @@ const PrimaryLink = {
   textAlign: "center",
 };
 
-function CardTweet({ id, tweet }) {
-  const [user, setUser] = useState({
+function CardTweet({ id, tweet, user }) {
+  
+  const [u, setUser] = useState({
     name: "",
     username: "",
     avatar: "",
@@ -119,20 +120,21 @@ function CardTweet({ id, tweet }) {
     getUser(tweet.user_id).then(setUser);
   }, []);
 
+
   function handleClick(event) {
     console.log(tweet.id);
     event.preventDefault();
     window.location.reload();
     deleteTweet(tweet.id);
   }
-
+console.log(user)
   return (
     <WrapperLi key={id}>
       <ContImage>
         <Image
           src={
-            user.avatar
-              ? user.avatar
+            u.avatar
+              ? u.avatar
               : "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
           }
           alt={tweet.id}
@@ -140,8 +142,8 @@ function CardTweet({ id, tweet }) {
       </ContImage>
       <ContTweet>
         <TweetInfo>
-          <NameUser>{user.name}</NameUser>
-          <UserName>@{user.username}</UserName>
+          <NameUser>{u.name}</NameUser>
+          <UserName>@{u.username}</UserName>
           <CreateTime>{tweet.created_time}</CreateTime>
         </TweetInfo>
         <Tweet>
@@ -154,14 +156,14 @@ function CardTweet({ id, tweet }) {
             </Link>
             <CommentCount>{tweet.comments_count}</CommentCount>
           </CommentsTweet>
-          <ActionTweet>
+          {user && tweet.user_id === user.id ?  <ActionTweet>
             <Link to={"/"} style={PrimaryLink} onClick={handleClick}>
               <HiOutlineTrash />
             </Link>
             <Link to={"/editTweet/" + tweet.id} style={PrimaryLink}>
               <FiEdit2 />
             </Link>
-          </ActionTweet>
+          </ActionTweet> : ""}
         </TweetLinks>
       </ContTweet>
     </WrapperLi>
