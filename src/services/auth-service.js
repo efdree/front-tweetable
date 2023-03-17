@@ -2,13 +2,10 @@ import { tokenKey } from "../config";
 import apiFetch from "./api-fetch";
 
 export function login(credentials) {
-  return apiFetch("/login", { body: credentials }).then((u) => {
-    const { token, ...user } = u;
+  return apiFetch(`/login?email=${credentials.email}&password=${credentials.password}`,{ method: "POST" }).then((u) => {
+    const token = u[1]['token']
+    const user = u[0]
     sessionStorage.setItem(tokenKey, token);
     return user;
   });
-}
-
-export function logout() {
-  return apiFetch("/logout", { method: "DELETE" });
 }

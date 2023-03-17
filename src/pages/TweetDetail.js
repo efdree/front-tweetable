@@ -66,7 +66,6 @@ function TweetDetail() {
 
   return (
     <Content>
-      <NavBar />
       <Header>Tuit Details</Header>
       <CardTweet id={tweet[0].id} tweet={tweet[0]} />
       <ContentComments>

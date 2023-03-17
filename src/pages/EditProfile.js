@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm";
-import NavBar from "../components/NavbarLogin";
 import UploadImages from "../services/cloudinary-service.js";
-import { getUser, updateUser } from "../services/users-service";
+import { useAuth } from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "../services/users-service";
 
 const Content = styled.div`
   margin: 0 auto;
@@ -14,30 +14,14 @@ const Content = styled.div`
 
 function EditProfile() {
   const navigate = useNavigate();
-
-  const [user, setUser] = useState([
-    {
-      email: "",
-      username: "",
-      name: "",
-      avatar: "",
-      password: "",
-    },
-  ]);
-
-  let params = useParams();
-
-  useEffect(() => {
-    getUser(Number(params.id)).then(setUser);
-  }, [params.id]);
+  const { user } = useAuth();
 
   const [formData, setFormData] = useState({
-    email: "",
-    username: "",
-    name: "",
-    avatar:
-      "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png",
-    password: "",
+    email: user.email,
+    username: user.username,
+    name: user.name,
+    avatar: user.avatar,      
+    password: user.password,
   });
 
   function handleChange(event) {
@@ -56,20 +40,14 @@ function EditProfile() {
   }
 
   function handleSubmit(event) {
-    formData.email = formData.email ? formData.email : user.email;
-    formData.username = formData.username ? formData.username : user.username;
-    formData.name = formData.name ? formData.name : user.name;
     formData.avatar = image ? image : formData.avatar;
-    formData.password = formData.password ? formData.password : user.password;
     event.preventDefault();
-    //updateUser(formData);
-    console.log(formData);
-    //navigate(`/`);
+    updateUser(user.id, formData);
+    //navigate("/");
   }
 
   return (
     <Content>
-      <NavBar />
       <Header>Edit Profile</Header>
       <ProfileForm
         onsubmit={handleSubmit}

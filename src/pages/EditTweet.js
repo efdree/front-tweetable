@@ -58,7 +58,6 @@ function EditTweet() {
 
   return (
     <Content>
-      <NavBar />
       <Header>Edit Tweet</Header>
       <EditForm
         onsubmit={handleSubmit}

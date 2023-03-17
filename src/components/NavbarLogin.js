@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 const Nav = styled.div`
   display: flex;
@@ -36,15 +37,15 @@ const ButtonPrimary = {
   corsor: "pointer",
 };
 
-function NavbarLogin(onClick) {
+function NavbarLogin(onclick) {
   return (
     <Nav>
-      <a href={"/editProfile"} style={ButtonPrimary}>
+      <NavLink to="/editProfile" style={ButtonPrimary}>
         Edit Profile
-      </a>
-      <a href={"/logout"} style={ButtonSecondary} onClick={onClick}>
+      </NavLink>
+      <NavLink style={ButtonSecondary} onClick={onclick}>
         Logout
-      </a>
+      </NavLink>
     </Nav>
   );
 }

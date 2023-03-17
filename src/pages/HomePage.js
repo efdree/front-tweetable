@@ -10,7 +10,7 @@ const Content = styled.div`
   background-color: #ebeef0;
 `;
 
-function HomePage() {
+function HomePage(showLogin) {
   const [formData, setFormData] = useState({
     body: "",
     comments_count: 0,
@@ -39,7 +39,7 @@ function HomePage() {
   return (
     <Content>
       <Header>Home</Header>
-      <TweetForm
+      {showLogin ? <TweetForm
         onsubmit={handleSubmit}
         src={
           "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
@@ -48,8 +48,8 @@ function HomePage() {
         value={formData.body}
         onchange={handleChange}
         nameButton="Tweet"
-      />
-      <CardListTweet tweets={tweets} />
+      /> : ""}
+      <CardListTweet tweets={tweets} login={showLogin}/>
     </Content>
   );
 }

@@ -13,5 +13,6 @@ export function createUser(user){
 }
 
 export function updateUser(id, user){
+    
     return apiFetch(`/user/${id}`,{method:"PATCH", body: user});
 }

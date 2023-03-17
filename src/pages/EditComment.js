@@ -56,7 +56,6 @@ function EditComment() {
 
   return (
     <Content>
-      <NavBar />
       <Header>Edit comment</Header>
       <EditForm
         onsubmit={handleSubmit}
