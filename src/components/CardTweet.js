@@ -1,10 +1,9 @@
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
+import { colors } from "../styles/colors";
 import { Link } from "react-router-dom";
 import { FaRegComment } from "react-icons/fa";
 import { FiEdit2 } from "react-icons/fi";
 import { HiOutlineTrash } from "react-icons/hi";
-import { getUser } from "../services/users-service";
 import { deleteTweet } from "../services/tweets-service";
 
 const WrapperLi = styled.li`
@@ -15,7 +14,7 @@ const WrapperLi = styled.li`
   margin: 2px auto;
   padding: 8px 16px;
   gap: 8px;
-  background-color: #ffffff;
+  background-color: ${colors.white};
 `;
 
 const ContImage = styled.div`
@@ -43,23 +42,15 @@ const TweetInfo = styled.div`
 
 const NameUser = styled.p`
   font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #0f1419;
+  color: ${colors.primaryText};
 `;
 
 const UserName = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #5b7083;
+  color: ${colors.secondaryText};
 `;
 
 const CreateTime = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  color: #5b7083;
+  color: ${colors.secondaryText};
 `;
 
 const Tweet = styled.div`
@@ -69,10 +60,7 @@ const Tweet = styled.div`
 
 const TweetBody = styled.div`
   text-align: left;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000;
+  color: ${colors.black};
 `;
 
 const TweetLinks = styled.div`
@@ -89,10 +77,7 @@ const CommentsTweet = styled.div`
   align-items: center;
 `;
 const CommentCount = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  color: #5b7083;
+  color: ${colors.secondaryText};
 `;
 
 const ActionTweet = styled.div`
@@ -101,40 +86,26 @@ const ActionTweet = styled.div`
   align-items: center;
 `;
 
-const PrimaryLink = {
-  color: "#303036",
-  border: "none",
-  corsor: "pointer",
-  textAlign: "center",
-};
+const StyleLink = styled(Link)`
+  color: ${colors.secondaryText};
+  border: none;
+  text-align: center;
+`;
 
 function CardTweet({ id, tweet, user }) {
-  
-  const [u, setUser] = useState({
-    name: "",
-    username: "",
-    avatar: "",
-  });
-
-  useEffect(() => {
-    getUser(tweet.user_id).then(setUser);
-  }, []);
-
-
   function handleClick(event) {
     console.log(tweet.id);
     event.preventDefault();
     window.location.reload();
     deleteTweet(tweet.id);
   }
-console.log(user)
   return (
     <WrapperLi key={id}>
       <ContImage>
         <Image
           src={
-            u.avatar
-              ? u.avatar
+            tweet.users_tweets.avatar
+              ? tweet.users_tweets.avatar
               : "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
           }
           alt={tweet.id}
@@ -142,8 +113,8 @@ console.log(user)
       </ContImage>
       <ContTweet>
         <TweetInfo>
-          <NameUser>{u.name}</NameUser>
-          <UserName>@{u.username}</UserName>
+          <NameUser>{tweet.users_tweets.name}</NameUser>
+          <UserName>@{tweet.users_tweets.username}</UserName>
           <CreateTime>{tweet.created_time}</CreateTime>
         </TweetInfo>
         <Tweet>
@@ -151,19 +122,23 @@ console.log(user)
         </Tweet>
         <TweetLinks>
           <CommentsTweet>
-            <Link to={"/tweet/" + tweet.id} style={PrimaryLink}>
+            <StyleLink to={"/tweet/" + tweet.id}>
               <FaRegComment />
-            </Link>
+            </StyleLink>
             <CommentCount>{tweet.comments_count}</CommentCount>
           </CommentsTweet>
-          {user && tweet.user_id === user.id ?  <ActionTweet>
-            <Link to={"/"} style={PrimaryLink} onClick={handleClick}>
-              <HiOutlineTrash />
-            </Link>
-            <Link to={"/editTweet/" + tweet.id} style={PrimaryLink}>
-              <FiEdit2 />
-            </Link>
-          </ActionTweet> : ""}
+          {user && tweet.user_id === user.id ? (
+            <ActionTweet>
+              <StyleLink to={"/"} onClick={handleClick}>
+                <HiOutlineTrash />
+              </StyleLink>
+              <StyleLink to={"/editTweet/" + tweet.id}>
+                <FiEdit2 />
+              </StyleLink>
+            </ActionTweet>
+          ) : (
+            ""
+          )}
         </TweetLinks>
       </ContTweet>
     </WrapperLi>

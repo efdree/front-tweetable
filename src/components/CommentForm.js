@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 import Button from "./Button";
 
 const ContentForm = styled.form`
@@ -9,7 +10,7 @@ const ContentForm = styled.form`
   margin: 2px auto 2px auto;
   padding: 8px 16px;
   gap: 8px;
-  background-color: white;
+  background-color: ${colors.white};
 `;
 
 const ContImage = styled.div`
@@ -29,10 +30,7 @@ const ContComment = styled.div`
 
 const TweetBody = styled.input`
   text-align: left;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000;
+  color: ${colors.black};
   width: 490px;
   border: none;
   margin-bottom: 16px;

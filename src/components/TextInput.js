@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 
 const Content = styled.div`
   display: flex;
@@ -8,22 +9,19 @@ const Content = styled.div`
 const StyledInput = styled.input`
   border-radius: 8px;
   padding: 8px 12px;
-  background: #ffffff;
-  border: 1px solid #5b7083;
+  background: ${colors.white};
+  border: 1px solid ${colors.secondaryText};
   box-shadow: 0px 1px 2pp rgba(0, 0, 0, 0.05);
   width: 260px;
   &:focus {
-    outline: 1px solid #1da1f2;
-    box-shadow: 0px 0px 6px #1da1f2;
+    outline: 1px solid ${colors.primary};
+    box-shadow: 0px 0px 6px ${colors.primary};
   }
 `;
 
 const StyledLabel = styled.label`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
   text-transform: uppercase;
-  color: #000000;
+  color: ${colors.black};
 `;
 
 function TextInput({

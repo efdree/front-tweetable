@@ -8,10 +8,10 @@ import { useParams } from "react-router-dom";
 import CommentForm from "../components/CommentForm";
 import { createComment } from "../services/comments-service";
 import { useAuth } from "../context/auth-context";
+import { useNavigate } from "react-router-dom";
 
 const Content = styled.div`
   margin: 0 auto;
-  background-color: #ebeef0;
 `;
 
 const ContentComments = styled.div`
@@ -19,6 +19,7 @@ const ContentComments = styled.div`
 `;
 
 function TweetDetail() {
+  const navigate = useNavigate();
 
   const { user } = useAuth();
 
@@ -36,8 +37,24 @@ function TweetDetail() {
           tweet_id: 1,
           id: 1,
           user_id: 1,
+          users_comments: {
+            id: 1,
+            name: "name",
+            username: "username",
+            email: "email",
+            password: "password",
+            avatar: "avatar",
+          },
         },
       ],
+      users_tweets: {
+        id: 1,
+        name: "name",
+        username: "username",
+        email: "email",
+        password: "password",
+        avatar: "avatar",
+      },
     },
   ]);
   let params = useParams();
@@ -63,6 +80,7 @@ function TweetDetail() {
     formData.tweet_id = tweet[0].id;
     console.log(formData);
     createComment(formData);
+    navigate(`/tweet/${tweet[0].id}`);
     event.preventDefault();
     window.location.reload();
   }
@@ -72,18 +90,19 @@ function TweetDetail() {
       <Header>Tuit Details</Header>
       <CardTweet id={tweet[0].id} tweet={tweet[0]} />
       <ContentComments>
-        {user ? <CommentForm
-          onsubmit={handleSubmit}
-          src={
-            "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
-          }
-          user_id={user.id}
-          value={formData.body}
-          onchange={handleChange}
-          nameButton="Comment"
-        />
-        :""}
-        <CardListComment comments={tweet[0].comments_tweets} user={user}/>
+        {user ? (
+          <CommentForm
+            onsubmit={handleSubmit}
+            src={user.avatar}
+            user_id={user.id}
+            value={formData.body}
+            onchange={handleChange}
+            nameButton="Comment"
+          />
+        ) : (
+          ""
+        )}
+        <CardListComment comments={tweet[0].comments_tweets} user={user} />
       </ContentComments>
     </Content>
   );

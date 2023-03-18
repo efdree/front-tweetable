@@ -44,13 +44,15 @@ export const reset = css`
     text-decoration-skip-ink: auto;
   }
   a {
-    text-decoration:none;
+    text-decoration: none;
     color: auto;
   }
-  a:link, a:visited, a:active {
-    text-decoration:none;
+  a:link,
+  a:visited,
+  a:active {
+    text-decoration: none;
     color: auto;
-}
+  }
   /* Make images easier to work with */
   img,
   picture {
@@ -64,8 +66,8 @@ export const reset = css`
   select {
     font: inherit;
   }
-  #root{
-    background-color:white;
+  #root {
+    background-color: white;
   }
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
   @media (prefers-reduced-motion: reduce) {
@@ -87,9 +89,14 @@ export const global = css`
   body {
     font-size: 1rem;
     line-height: 1.5rem;
+    font-weight: 400;
     font-family: ${fonts.primary};
     color: ${colors.primaryText};
     background-color: ${colors.background};
     margin: 0 auto;
+  }
+
+  #root {
+    background-color: ${colors.background};
   }
 `;

@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
-import { useState, useEffect } from "react";
+import { colors } from "../styles/colors";
 import { Link } from "react-router-dom";
 import { FiEdit2 } from "react-icons/fi";
 import { HiOutlineTrash } from "react-icons/hi";
-import { getUser } from "../services/users-service";
 import { deleteComment } from "../services/comments-service";
 
 const WrapperLi = styled.li`
@@ -14,7 +13,7 @@ const WrapperLi = styled.li`
   margin: 2px auto;
   padding: 8px 16px;
   gap: 8px;
-  background-color: #ffffff;
+  background-color: ${colors.white};
 `;
 
 const ContImage = styled.div`
@@ -42,23 +41,15 @@ const CommentInfo = styled.div`
 
 const NameUser = styled.p`
   font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  color: #0f1419;
+  color: ${colors.primaryText};
 `;
 
 const UserName = styled.p`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #5b7083;
+  color: ${colors.secondaryText};
 `;
 
 const CreateTime = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  color: #5b7083;
+  color: ${colors.secondaryText};
 `;
 
 const Comment = styled.div`
@@ -68,10 +59,7 @@ const Comment = styled.div`
 
 const CommentBody = styled.div`
   text-align: left;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #000000;
+  color: ${colors.black};
 `;
 
 const CommentLinks = styled.div`
@@ -93,24 +81,13 @@ const ActionComment = styled.div`
   align-items: center;
 `;
 
-const PrimaryLink = {
-  color: "#303036",
-  border: "none",
-  corsor: "pointer",
-  textAlign: "center",
-};
+const StyleLink = styled(Link)`
+  color: ${colors.secondaryText};
+  border: none;
+  text-align: center;
+`;
 
-function CardComment({ comment, user}) {
-  const [u, setUser] = useState({
-    name: "",
-    username: "",
-    avatar: "",
-  });
-
-  useEffect(() => {
-    getUser(comment.user_id).then(setUser);
-  }, []);
-
+function CardComment({ comment, user }) {
   function handleClick(event) {
     console.log(comment.id);
     event.preventDefault();
@@ -123,8 +100,8 @@ function CardComment({ comment, user}) {
       <ContImage>
         <Image
           src={
-            u.avatar
-              ? u.avatar
+            comment.users_comments.avatar
+              ? comment.users_comments.avatar
               : "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png"
           }
           alt={comment.id}
@@ -132,8 +109,8 @@ function CardComment({ comment, user}) {
       </ContImage>
       <ContComment>
         <CommentInfo>
-          <NameUser>{u.name}</NameUser>
-          <UserName>@{u.username}</UserName>
+          <NameUser>{comment.users_comments.name}</NameUser>
+          <UserName>@{comment.users_comments.username}</UserName>
           <CreateTime>{comment.created_time}</CreateTime>
         </CommentInfo>
         <Comment>
@@ -141,15 +118,18 @@ function CardComment({ comment, user}) {
         </Comment>
         <CommentLinks>
           <CommentsTweet></CommentsTweet>
-          {user && comment.user_id === user.id ? <ActionComment>
-            <Link to={"/"} style={PrimaryLink} onClick={handleClick}>
-              <HiOutlineTrash />
-            </Link>
-            <Link to={"/editComment/" + comment.id} style={PrimaryLink}>
-              <FiEdit2 />
-            </Link>
-          </ActionComment>
-          : ""}
+          {user && comment.user_id === user.id ? (
+            <ActionComment>
+              <StyleLink to={"/"} onClick={handleClick}>
+                <HiOutlineTrash />
+              </StyleLink>
+              <StyleLink to={"/editComment/" + comment.id}>
+                <FiEdit2 />
+              </StyleLink>
+            </ActionComment>
+          ) : (
+            ""
+          )}
         </CommentLinks>
       </ContComment>
     </WrapperLi>

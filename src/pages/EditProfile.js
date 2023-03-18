@@ -9,7 +9,6 @@ import { updateUser } from "../services/users-service";
 
 const Content = styled.div`
   margin: 0 auto;
-  background-color: #ebeef0;
 `;
 
 function EditProfile() {
@@ -20,7 +19,7 @@ function EditProfile() {
     email: user.email,
     username: user.username,
     name: user.name,
-    avatar: user.avatar,      
+    avatar: user.avatar,
     password: user.password,
   });
 

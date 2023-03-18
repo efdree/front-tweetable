@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 import Button from "./Button";
 import TextArea from "./TextArea";
 
@@ -10,7 +11,7 @@ const ContentForm = styled.form`
   margin: 2px auto;
   padding: 50px 0px 16px 0px;
   gap: 8px;
-  background-color: white;
+  background-color: ${colors.white};
 `;
 
 const ContTweet = styled.div`
@@ -18,11 +19,7 @@ const ContTweet = styled.div`
   flex-direction: column;
 `;
 
-const SubTitle = styled.p`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-`;
+const SubTitle = styled.p``;
 
 const ContButton = styled.div``;
 

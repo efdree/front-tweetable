@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 import { Link } from "react-router-dom";
 
 const Nav = styled.div`
@@ -11,25 +12,20 @@ const Nav = styled.div`
   width: 600px;
   margin: 4px auto;
 `;
-const ButtonSecondary = {
-  padding: "4px 16px",
-  background: "none",
-  border: "1px solid #1DA1F2",
-  borderRadius: "100px",
-  letterSpacing: "0.1em",
-  color: "#1DA1F2",
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "24px",
-  corsor: "pointer",
-};
+
+const ButtonSecondary = styled(Link)`
+  padding: 4px 16px;
+  background: none;
+  border: 1px solid ${colors.primary};
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  color: ${colors.primary};
+`;
 
 function NavbarLogout() {
   return (
     <Nav>
-      <Link to={"/login"} style={ButtonSecondary}>
-        Login
-      </Link>
+      <ButtonSecondary to={"/login"}>Login</ButtonSecondary>
     </Nav>
   );
 }

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 import { useState } from "react";
 import Header from "../components/Header";
 import LoginForm from "../components/LoginForm";
@@ -8,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 
 const Content = styled.div`
   margin: 0 auto;
-  background-color: #ebeef0;
 `;
 
 const ContentLink = styled.div`
@@ -22,11 +22,7 @@ const CustomLink = styled(Link)`
   margin: 0 auto;
   text-align: center;
   letter-spacing: 0.1em;
-  color: #1da1f2;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  cursor: pointer;
+  color: ${colors.primary};
 `;
 
 function Login() {
@@ -36,7 +32,7 @@ function Login() {
   });
 
   const { login } = useAuth();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -59,9 +55,7 @@ function Login() {
         onchange={handleChange}
       />
       <ContentLink>
-        <CustomLink to={"/signup"}>
-          Sign Up
-        </CustomLink>
+        <CustomLink to={"/signup"}>Sign Up</CustomLink>
       </ContentLink>
     </Content>
   );

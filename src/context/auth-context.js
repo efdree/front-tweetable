@@ -1,14 +1,13 @@
 import { createContext, useContext } from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { tokenKey } from "../config";
-import { getUser } from "../services/users-service";
 import * as auth from "./../services/auth-service";
 import { createUser } from "./../services/users-service";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState();
 
   function login(credentials) {
     auth
@@ -17,8 +16,8 @@ function AuthProvider({ children }) {
       .catch((error) => console.log(error));
   }
   function logout() {
-      sessionStorage.removeItem(tokenKey);
-      setUser(null);
+    sessionStorage.removeItem(tokenKey);
+    setUser(null);
   }
   function signup(userData) {
     createUser(userData)

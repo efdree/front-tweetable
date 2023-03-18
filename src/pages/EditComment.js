@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import Header from "../components/Header";
-import NavBar from "../components/NavbarLogin";
 import { useParams } from "react-router-dom";
 import EditForm from "../components/EditForm";
 import { useNavigate } from "react-router-dom";
 import { getComment, updateComment } from "../services/comments-service";
+import { useAuth } from "../context/auth-context";
 
 const Content = styled.div`
   margin: 0 auto;
-  background-color: #ebeef0;
 `;
 
 function EditComment() {
+  const { user } = useAuth();
+
   const navigate = useNavigate();
 
   const [comment, setComment] = useState({
@@ -31,7 +32,7 @@ function EditComment() {
   const [formData, setFormData] = useState({
     created_time: comment.created_time,
     body: "",
-    user_id: comment.user_id,
+    user_id: user.id,
     comment_id: comment.tweet_id,
   });
 
@@ -45,7 +46,7 @@ function EditComment() {
       ? formData.created_time
       : comment.created_time;
     formData.body = formData.body ? formData.body : comment.body;
-    formData.user_id = formData.user_id ? formData.user_id : comment.user_id;
+    formData.user_id = user.id;
     formData.tweet_id = formData.tweet_id
       ? formData.tweet_id
       : comment.tweet_id;

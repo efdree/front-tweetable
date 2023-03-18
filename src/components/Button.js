@@ -1,16 +1,13 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 
 const Button = styled.button`
   padding: 8px 16px;
-  background: #1da1f2;
+  background: ${colors.primary};
   border-radius: 100px;
   letter-spacing: 0.1em;
-  color: #ffffff;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  color: ${colors.white};
   border: none;
-  corsor: pointer;
   &:hover {
     background: hsla(215, 14%, 34%, 1);
   }

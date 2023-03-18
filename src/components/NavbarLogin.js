@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 import { NavLink } from "react-router-dom";
 
 const Nav = styled.div`
@@ -11,41 +12,29 @@ const Nav = styled.div`
   width: 600px;
   margin: 4px auto;
 `;
-const ButtonSecondary = {
-  padding: "4px 16px",
-  background: "none",
-  border: "1px solid #1DA1F2",
-  borderRadius: "100px",
-  letterSpacing: "0.1em",
-  color: "#1DA1F2",
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "24px",
-  corsor: "pointer",
-};
+const ButtonSecondary = styled(NavLink)`
+  padding: 4px 16px;
+  background: none;
+  border: 1px solid ${colors.primary};
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  color: ${colors.primary};
+`;
 
-const ButtonPrimary = {
-  padding: "4px 16px",
-  background: "none",
-  border: "none",
-  borderRadius: "100px",
-  letterSpacing: "0.1em",
-  color: "#1DA1F2",
-  fontWeight: "400",
-  fontSize: "16px",
-  lineHeight: "24px",
-  corsor: "pointer",
-};
+const ButtonPrimary = styled(NavLink)`
+  padding: 4px 16px;
+  background: none;
+  border: none;
+  border-radius: 100px;
+  letter-spacing: 0.1em;
+  color: ${colors.primary};
+`;
 
 function NavbarLogin(onclick) {
   return (
     <Nav>
-      <NavLink to="/editProfile" style={ButtonPrimary}>
-        Edit Profile
-      </NavLink>
-      <NavLink style={ButtonSecondary} onClick={onclick}>
-        Logout
-      </NavLink>
+      <ButtonPrimary to="/editProfile">Edit Profile</ButtonPrimary>
+      <ButtonSecondary onClick={onclick}>Logout</ButtonSecondary>
     </Nav>
   );
 }

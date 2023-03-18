@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 const Content = styled.div`
   margin: 0 auto;
-  background-color: #ebeef0;
 `;
 
 function SignUp() {
@@ -22,7 +21,7 @@ function SignUp() {
   });
 
   const { signup } = useAuth();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;

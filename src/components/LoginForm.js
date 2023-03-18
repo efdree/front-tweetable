@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from "../styles/colors";
 import Button from "./Button";
 import TextInput from "./TextInput";
 
@@ -10,7 +11,7 @@ const ContentForm = styled.form`
   margin: 2px auto 0px auto;
   padding: 50px 0px 16px 0px;
   gap: 8px;
-  background-color: white;
+  background-color: ${colors.white};
 `;
 
 const ContButton = styled.div``;
