@@ -3,10 +3,12 @@ import { useState } from "react";
 import { tokenKey } from "../config";
 import * as auth from "./../services/auth-service";
 import { createUser } from "./../services/users-service";
+import { useNavigate, Navigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
+  const navigate = useNavigate();
   const [user, setUser] = useState();
 
   function login(credentials) {
@@ -42,4 +44,14 @@ function useAuth() {
   return useContext(AuthContext);
 }
 
-export { AuthProvider, useAuth };
+function AuthRoute(props) {
+  const auth = useAuth();
+
+  if (!auth.user) {
+    return <Navigate to="/login" />;
+  }
+
+  return props.children;
+}
+
+export { AuthProvider, useAuth, AuthRoute };
