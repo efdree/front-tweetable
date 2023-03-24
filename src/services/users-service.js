@@ -25,9 +25,7 @@ export function createUser(user){
 
 export function updateUser(id, user){
     return apiFetch(`/user/${id}`,{method:"PATCH", body: user}).then((usr) => {
-        const token = usr[1]['token']
-        const user = usr[0]
-        sessionStorage.setItem(tokenKey, token);
+        const user = usr
         return user;
     });;
 }

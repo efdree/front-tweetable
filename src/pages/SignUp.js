@@ -18,7 +18,14 @@ function SignUp() {
     avatar:
       "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png",
     password: "",
+    confirmPassword:"",
   });
+
+  const [error, setError] = useState({
+    password: '',
+    confirmPassword: '',
+  })
+
   const navigate = useNavigate();
 
   const { signup } = useAuth();
@@ -26,6 +33,42 @@ function SignUp() {
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    passwordConfirmation(event)
+  }
+
+  function passwordConfirmation(event){
+    let { name, value } = event.target;
+    setError((prev) => {
+      const stateObj = { ...prev, [name]: '' };
+      console.log(formData.password)
+      switch (name) {
+        case 'password':
+          if (!value) {
+            stateObj[name] = 'Please enter Password.';
+          } else if (formData.confirmPassword && value !== formData.confirmPassword) {
+            stateObj['confirmPassword'] =
+              'Password and Confirm Password does not match.';
+          } else {
+            stateObj['confirmPassword'] = formData.confirmPassword
+              ? ''
+              : error.confirmPassword;
+          }
+          break;
+
+        case 'confirmPassword':
+          if (!value) {
+            stateObj[name] = 'Please enter Confirm Password.';
+          } else if (formData.password && value !== formData.password) {
+            stateObj[name] = 'Password and Confirm Password does not match.';
+          }
+          break;
+
+        default:
+          break;
+      }
+
+      return stateObj;
+    });
   }
 
   const [image, setImage] = useState("");
@@ -54,9 +97,10 @@ function SignUp() {
         valueUsername={formData.username}
         valueName={formData.name}
         valuePassword={formData.password}
-        valuePasswordConfirm={formData.password}
+        valuePasswordConfirm={formData.confirmPassword}
         onChangeFile={handleUploadImage}
         onchange={handleChange}
+        error={error}
       />
     </Content>
   );

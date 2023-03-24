@@ -98,7 +98,7 @@ function TweetDetail() {
         ) : (
           ""
         )}
-        <CardListComment comments={tweet[0].comments_tweets} user={user} />
+        <CardListComment comments={tweet[0].comments_tweets.sort((a,b) =>Date.parse(b.created_time) - Date.parse(a.created_time))} user={user} />
       </ContentComments>
     </>
   );

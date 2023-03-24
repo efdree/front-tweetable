@@ -32,6 +32,8 @@ function HomePage() {
     getTweets().then(setTweets);
   }, []);
 
+  console.log(tweets)
+
   return (
     <>
       <Header>Home</Header>
@@ -47,7 +49,7 @@ function HomePage() {
       ) : (
         ""
       )}
-      <CardListTweet tweets={tweets} user={user} />
+      <CardListTweet tweets={tweets.sort((a,b) =>Date.parse(b.created_time) - Date.parse(a.created_time))} user={user} />
     </>
   );
 }

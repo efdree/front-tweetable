@@ -18,11 +18,53 @@ function EditProfile() {
     name: user.name,
     avatar: user.avatar,
     password: user.password,
+    confirmPassword:user.password,
   });
+
+  const [error, setError] = useState({
+    password: '',
+    confirmPassword: '',
+  })
 
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    passwordConfirmation(event)
+  }
+
+  function passwordConfirmation(event){
+    let { name, value } = event.target;
+    setError((prev) => {
+      const stateObj = { ...prev, [name]: '' };
+      console.log(formData.password)
+      switch (name) {
+        case 'password':
+          if (!value) {
+            stateObj[name] = 'Please enter Password.';
+          } else if (formData.confirmPassword && value !== formData.confirmPassword) {
+            stateObj['confirmPassword'] =
+              'Password and Confirm Password does not match.';
+          } else {
+            stateObj['confirmPassword'] = formData.confirmPassword
+              ? ''
+              : error.confirmPassword;
+          }
+          break;
+
+        case 'confirmPassword':
+          if (!value) {
+            stateObj[name] = 'Please enter Confirm Password.';
+          } else if (formData.password && value !== formData.password) {
+            stateObj[name] = 'Password and Confirm Password does not match.';
+          }
+          break;
+
+        default:
+          break;
+      }
+
+      return stateObj;
+    });
   }
 
   const [image, setImage] = useState("");
@@ -55,6 +97,7 @@ function EditProfile() {
         onChangeFile={handleUploadImage}
         onchange={handleChange}
         profile={"/"}
+        error={error}
       />
     </>
   );
