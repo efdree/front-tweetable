@@ -10,10 +10,6 @@ import { createComment } from "../services/comments-service";
 import { useAuth } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
-const Content = styled.div`
-  margin: 0 auto;
-`;
-
 const ContentComments = styled.div`
   padding: 12px;
 `;
@@ -86,7 +82,7 @@ function TweetDetail() {
   }
 
   return (
-    <Content>
+    <>
       <Header>Tuit Details</Header>
       <CardTweet id={tweet[0].id} tweet={tweet[0]} />
       <ContentComments>
@@ -104,7 +100,7 @@ function TweetDetail() {
         )}
         <CardListComment comments={tweet[0].comments_tweets} user={user} />
       </ContentComments>
-    </Content>
+    </>
   );
 }
 

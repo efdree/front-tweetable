@@ -98,5 +98,6 @@ export const global = css`
 
   #root {
     background-color: ${colors.background};
+    margin: 0 auto;
   }
 `;

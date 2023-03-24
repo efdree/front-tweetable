@@ -7,10 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { getComment, updateComment } from "../services/comments-service";
 import { useAuth } from "../context/auth-context";
 
-const Content = styled.div`
-  margin: 0 auto;
-`;
-
 function EditComment() {
   const { user } = useAuth();
 
@@ -56,7 +52,7 @@ function EditComment() {
   }
 
   return (
-    <Content>
+    <>
       <Header>Edit comment</Header>
       <EditForm
         onsubmit={handleSubmit}
@@ -67,7 +63,7 @@ function EditComment() {
         label={"Body"}
         placeholder={""}
       />
-    </Content>
+    </>
   );
 }
 

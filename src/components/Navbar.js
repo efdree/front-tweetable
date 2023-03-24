@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { colors } from "../styles/colors";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
 
 const Nav = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const Nav = styled.div`
   width: 600px;
   margin: 4px auto;
 `;
-const ButtonSecondary = styled(NavLink)`
+const ButtonNavLink = styled(NavLink)`
   padding: 4px 16px;
   background: none;
   border: 1px solid ${colors.primary};
@@ -21,21 +22,25 @@ const ButtonSecondary = styled(NavLink)`
   color: ${colors.primary};
 `;
 
-const ButtonPrimary = styled(NavLink)`
+const StlyeNavLink = styled(NavLink)`
   padding: 4px 16px;
-  background: none;
+  background-color: none;
   border: none;
   border-radius: 100px;
   letter-spacing: 0.1em;
   color: ${colors.primary};
 `;
 
-function NavbarLogin(onclick) {
+function Navbar() {
+
+  const { user, logout } = useAuth();
+
   return (
     <Nav>
-      <ButtonPrimary to="/editProfile">Edit Profile</ButtonPrimary>
-      <ButtonSecondary onClick={onclick}>Logout</ButtonSecondary>
+        {user ? <StlyeNavLink to="/editProfile">Edit Profile</StlyeNavLink> : "" }
+        {user ? <ButtonNavLink to="/" onClick={logout}>Logout</ButtonNavLink> : <ButtonNavLink to={"/login"}>Login</ButtonNavLink> }
     </Nav>
   );
 }
-export default NavbarLogin;
+
+export default Navbar;

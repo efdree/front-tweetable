@@ -4,12 +4,8 @@ import { useState } from "react";
 import Header from "../components/Header";
 import LoginForm from "../components/LoginForm";
 import { useAuth } from "../context/auth-context";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
-const Content = styled.div`
-  margin: 0 auto;
-`;
 
 const ContentLink = styled.div`
   margin: 0px auto;
@@ -26,6 +22,8 @@ const CustomLink = styled(Link)`
 `;
 
 function Login() {
+  const auth = useAuth();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -45,8 +43,12 @@ function Login() {
     navigate(`/`);
   }
 
+  if (auth.user){
+    return <Navigate to="/"/>
+  }
+
   return (
-    <Content>
+    <>
       <Header>Login</Header>
       <LoginForm
         onsubmit={handleSubmit}
@@ -57,7 +59,7 @@ function Login() {
       <ContentLink>
         <CustomLink to={"/signup"}>Sign Up</CustomLink>
       </ContentLink>
-    </Content>
+    </>
   );
 }
 

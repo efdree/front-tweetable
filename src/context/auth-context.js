@@ -1,15 +1,21 @@
 import { createContext, useContext } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { tokenKey } from "../config";
 import * as auth from "./../services/auth-service";
-import { createUser } from "./../services/users-service";
-import { useNavigate, Navigate } from "react-router-dom";
+import { getUser, createUser } from "./../services/users-service";
+import { Navigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const navigate = useNavigate();
-  const [user, setUser] = useState();
+
+  const [user, setUser] = useState(null);
+  console.log(user)
+  useEffect(() => {
+    getUser()
+      .then((u) => setUser(u))
+      .catch((error) => console.log(error));
+  }, []);
 
   function login(credentials) {
     auth
@@ -19,12 +25,18 @@ function AuthProvider({ children }) {
   }
   function logout() {
     sessionStorage.removeItem(tokenKey);
+    sessionStorage.removeItem("user-auth");
     setUser(null);
   }
   function signup(userData) {
     createUser(userData)
       .then((u) => setUser(u))
       .catch((error) => console.log(error));
+    const credentials = {
+        email: userData.email,
+        password: userData.password,
+      } 
+    login(credentials);
   }
   return (
     <AuthContext.Provider

@@ -3,17 +3,14 @@ import { useState } from "react";
 import Header from "../components/Header";
 import ProfileForm from "../components/ProfileForm";
 import UploadImages from "../services/cloudinary-service.js";
-import { useAuth } from "../context/auth-context";
+import { AuthRoute, useAuth } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../services/users-service";
-
-const Content = styled.div`
-  margin: 0 auto;
-`;
 
 function EditProfile() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  
 
   const [formData, setFormData] = useState({
     email: user.email,
@@ -46,7 +43,7 @@ function EditProfile() {
   }
 
   return (
-    <Content>
+    <>
       <Header>Edit Profile</Header>
       <ProfileForm
         onsubmit={handleSubmit}
@@ -59,7 +56,7 @@ function EditProfile() {
         onchange={handleChange}
         profile={"/"}
       />
-    </Content>
+    </>
   );
 }
 

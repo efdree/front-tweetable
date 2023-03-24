@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react";
-import styled from "@emotion/styled";
 import Header from "../components/Header";
 import { createTweet, getTweets } from "../services/tweets-service";
 import CardListTweet from "../components/CardListTweet";
 import TweetForm from "../components/TweetForm";
 import { useAuth } from "../context/auth-context";
-
-const Content = styled.div`
-  margin: 0 auto;
-`;
 
 function HomePage() {
   const { user } = useAuth();
@@ -30,8 +25,6 @@ function HomePage() {
     formData.user_id = user.id;
     console.log(formData);
     createTweet(formData);
-    event.preventDefault();
-    //window.location.reload();
   }
 
   const [tweets, setTweets] = useState([]);
@@ -40,7 +33,7 @@ function HomePage() {
   }, []);
 
   return (
-    <Content>
+    <>
       <Header>Home</Header>
       {user ? (
         <TweetForm
@@ -55,7 +48,7 @@ function HomePage() {
         ""
       )}
       <CardListTweet tweets={tweets} user={user} />
-    </Content>
+    </>
   );
 }
 

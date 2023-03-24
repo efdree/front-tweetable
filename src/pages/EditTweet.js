@@ -7,10 +7,6 @@ import EditForm from "../components/EditForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 
-const Content = styled.div`
-  margin: 0 auto;
-`;
-
 function EditTweet() {
   const { user } = useAuth();
 
@@ -58,7 +54,7 @@ function EditTweet() {
   }
 
   return (
-    <Content>
+    <>
       <Header>Edit Tweet</Header>
       <EditForm
         onsubmit={handleSubmit}
@@ -69,7 +65,7 @@ function EditTweet() {
         label={"Body"}
         placeholder={""}
       />
-    </Content>
+    </>
   );
 }
 

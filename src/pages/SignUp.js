@@ -19,9 +19,9 @@ function SignUp() {
       "https://res.cloudinary.com/dw4vczbtg/image/upload/v1678486979/app_offix/pngwing.com_5_ggn8qz.png",
     password: "",
   });
+  const navigate = useNavigate();
 
   const { signup } = useAuth();
-  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -41,9 +41,8 @@ function SignUp() {
   function handleSubmit(event) {
     event.preventDefault();
     formData.avatar = image ? image : formData.avatar;
-    console.log(formData);
     signup(formData);
-    navigate(`/`);
+    navigate("/");
   }
 
   return (
